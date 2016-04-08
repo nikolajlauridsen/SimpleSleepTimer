@@ -42,7 +42,7 @@ class Timer:
         timestamp = int(time.time())
         timestamp = timestamp + int(t)
         print('Writing shutdown time to file...')
-        f = open('data-shutdown.txt', 'a')
+        f = open('data-shutdown.txt', 'w')
         f.write(str(timestamp))
         f.write('\n')
         f.close
