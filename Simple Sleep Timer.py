@@ -46,6 +46,13 @@ class Timer:
         f.write('\n')
         f.close
 
+#Removes shutdown time from file
+    def delete_time():
+        shutdown_data = open('data-shutdown.txt').readlines()
+        w = open('data-shutdown.txt', 'w')
+        w.writelines([item for item in shutdown_data[:-1]])
+        w.close
+
 #Shutdown function, converts time and sends shutdown signal, takes 2 variables t (time in seconds) and m (mode)
     def shutdown(t, m):
         try:
@@ -77,15 +84,6 @@ class Timer:
         ).strftime('Shutting down at: %H:%M:%S on %d-%m-%y')
         return time_remaining, shutdown_time_human
 
-#Cancels current shutdown scheduled
-    def cancel_shutdown():
-        shutdown_data = open('data-shutdown.txt').readlines()
-        w = open('data-shutdown.txt', 'w')
-        w.writelines([item for item in shutdown_data[:-1]])
-        w.close
-        os.system('shutdown -a')
-        print('\nScheduled action aborted')
-
 #---------------------------------Main------------------------------------------
 
 print('Simple Sleep Timer (SST)\n\nAvailable commands:\nhours:minutes         - Shuts down the computer after the given time\nr, reboot or restart  - Enters reboot mode\nl, left or est        - Prints remaining time till shutdown\nc, cancel or abort    - Cancels previously scheduled action\ne, end or exit        - Exits the program')
@@ -115,10 +113,12 @@ while 1 == 1:
 
 #Cancel shutdown
     elif sleep_time.lower() == "c" or sleep_time.lower() == "cancel" or sleep_time.lower() == "abort":  #Checks for the words c, cancel, or abort
-        Timer.cancel_shutdown()
+        Timer.delete_time()
+        os.system('shutdown -a')
+        print('\nScheduled action aborted')
 
 #Exit program
     elif sleep_time.lower() == "e" or sleep_time.lower() == "exit" or sleep_time.lower() == 'end':
         break
     else:
-        print('Incorrect input')
+        print('Incorrect input. Use hours:minutes.')
