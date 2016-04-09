@@ -41,12 +41,10 @@ class Timer:
     def write_time(t):
         timestamp = int(time.time())
         timestamp = timestamp + int(t)
-        print('Writing shutdown time to file...')
         f = open('data-shutdown.txt', 'w')
         f.write(str(timestamp))
         f.write('\n')
         f.close
-        print("Done!\n")
 
 #Shutdown function, converts time and sends shutdown signal, takes 2 variables t (time in seconds) and m (mode)
     def shutdown(t, m):
@@ -67,7 +65,10 @@ class Timer:
     def time_remaining():
         shutdown_data = open('data-shutdown.txt').readlines()
         placer = len(shutdown_data) - 1
-        shutdown_time = shutdown_data[placer]
+        try:
+            shutdown_time = shutdown_data[placer]
+        except IndexError:
+            shutdown_time = 0
         current_time = int(time.time())
         time_remaining = int(shutdown_time) - current_time
         time_remaining = float(time_remaining)/60
@@ -78,7 +79,6 @@ class Timer:
 
 #Cancels current shutdown scheduled
     def cancel_shutdown():
-        print('Removing shutdown entry')
         shutdown_data = open('data-shutdown.txt').readlines()
         w = open('data-shutdown.txt', 'w')
         w.writelines([item for item in shutdown_data[:-1]])
@@ -88,7 +88,7 @@ class Timer:
 
 #---------------------------------Main------------------------------------------
 
-print('\nSimple Sleep Timer (SST)\n\nAvailable commands:\nhours:minutes         - Shuts down the computer after the given time\nr, reboot or restart  - Enters reboot mode\nl, left or est        - Prints remaining time till shutdown\nc, cancel or abort    - Cancels previously scheduled action\ne, end or exit        - Exits the program')
+print('Simple Sleep Timer (SST)\n\nAvailable commands:\nhours:minutes         - Shuts down the computer after the given time\nr, reboot or restart  - Enters reboot mode\nl, left or est        - Prints remaining time till shutdown\nc, cancel or abort    - Cancels previously scheduled action\ne, end or exit        - Exits the program')
 while 1 == 1:
     sleep_time = input('\nTime till shutdown: ')
 
