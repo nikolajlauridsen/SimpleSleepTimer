@@ -89,7 +89,7 @@ class Timer:
 
 print('Simple Sleep Timer (SST)\n\nAvailable commands:\nhours:minutes         - Shuts down the computer after the given time\nr, reboot or restart  - Enters reboot mode\nl, left or est        - Prints remaining time till shutdown\nc, cancel or abort    - Cancels previously scheduled action\ne, end or exit        - Exits the program')
 while 1 == 1:
-    sleep_time = input('\nTime till shutdown: ')
+    sleep_time = input('\nMenu: ')
 
 #Shutdown mode. If the input is a time format or decimal number, shutdown is assumed as the desired mode
     if Timer.is_time(sleep_time) == True or Timer.is_number(sleep_time) == True:
@@ -97,9 +97,16 @@ while 1 == 1:
 
 #Reboot mode
     elif sleep_time.lower() == "r" or sleep_time.lower() == "reboot" or sleep_time.lower() == "restart":  #Checks for the words r, reboot, or restart
-        print('\nRebboot mode')
-        reboot_time = input('Time til reboot: ')
-        Timer.shutdown(reboot_time, "-r")
+        print('\nEntering reboot mode')
+        print('Reboot commands:')
+        print('hours:minutes    - Restarts the computer af the given time')
+        print('Anything else    - Return to main menu')
+        reboot_time = input('\nReboot mode: ')
+        if Timer.is_time(reboot_time) == True or Timer.is_number(reboot_time) == True:
+            Timer.shutdown(reboot_time, "-r")
+            print('\nReturning to menu')
+        else:
+            print('\nReturning to menu')
 
 #Time remaining mode
     elif sleep_time.lower() == "l" or sleep_time.lower() == "left" or sleep_time.lower() == "est":
@@ -114,7 +121,7 @@ while 1 == 1:
     elif sleep_time.lower() == "c" or sleep_time.lower() == "cancel" or sleep_time.lower() == "abort":  #Checks for the words c, cancel, or abort
         Timer.delete_time()
         os.system('shutdown -a')
-        print('\nScheduled action aborted')
+        print('Scheduled action aborted')
 
 #Exit program
     elif sleep_time.lower() == "e" or sleep_time.lower() == "exit" or sleep_time.lower() == 'end':
