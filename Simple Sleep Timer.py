@@ -61,10 +61,11 @@ class Timer:
             elif Timer.is_number(t) == True:
                 s = Timer.convert_number(t)
         except ValueError:
-            print("Incorrect input. Use hours:minutes")
+            print("Incorrect input. Use hours:minutes. Returning to main menu")
+            return
         try:
             Timer.write_time(s)
-            os.system("shutdown " + m + " -f -t " + str(s))
+            os.system("shutdown " + m + " -t " + str(s))
         except UnboundLocalError:
             print("Incorrect input. Use hours:minutes. Returning to main menu")
 
@@ -96,9 +97,7 @@ while 1 == 1:
 
 #Reboot mode
     elif sleep_time.lower() == "r" or sleep_time.lower() == "reboot" or sleep_time.lower() == "restart":  #Checks for the words r, reboot, or restart
-        os.system("cls")
-        print('Simple Sleep Timer (SST)')
-        print('Rebboot mode\n')
+        print('\nRebboot mode')
         reboot_time = input('Time til reboot: ')
         Timer.shutdown(reboot_time, "-r")
 
