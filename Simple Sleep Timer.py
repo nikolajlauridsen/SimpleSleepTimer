@@ -119,9 +119,13 @@ while 1 == 1:
 
 #Cancel shutdown
     elif sleep_time.lower() == "c" or sleep_time.lower() == "cancel" or sleep_time.lower() == "abort":  #Checks for the words c, cancel, or abort
-        Timer.delete_time()
-        os.system('shutdown -a')
-        print('Scheduled action aborted')
+        remaining_time, shutdown_time = Timer.time_remaining()
+        if remaining_time > 0:
+            Timer.delete_time()
+            os.system('shutdown -a')
+            print('Scheduled action aborted')
+        else:
+            print("No shutdown Scheduled")
 
 #Exit program
     elif sleep_time.lower() == "e" or sleep_time.lower() == "exit" or sleep_time.lower() == 'end':
