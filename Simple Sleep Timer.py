@@ -66,6 +66,8 @@ class Timer:
         try:
             Timer.write_time(s)
             os.system("shutdown " + m + " -t " + str(s))
+            time_remaining, shutdown_time = Timer.time_remaining()
+            print(shutdown_time)
         except UnboundLocalError:
             print("Incorrect input. Use hours:minutes. Returning to main menu")
 
@@ -82,7 +84,7 @@ class Timer:
         time_remaining = float(time_remaining)/60
         shutdown_time_human = datetime.datetime.fromtimestamp(
             int(shutdown_time)
-        ).strftime('Shutting down at: %H:%M:%S on %d-%m-%y')
+        ).strftime('Shutting down at %H:%M:%S on %d-%m-%y')
         return time_remaining, shutdown_time_human
 
 #---------------------------------Main------------------------------------------
