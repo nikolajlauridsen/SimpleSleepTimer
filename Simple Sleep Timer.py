@@ -73,7 +73,10 @@ class Timer:
 
 #Returns remaining time till shutdown
     def time_remaining():
-        shutdown_data = open('data-shutdown.txt').readlines()
+        try:
+            shutdown_data = open('data-shutdown.txt').readlines()
+        except FileNotFoundError:
+            return 0, "NaN"
         placer = len(shutdown_data) - 1
         try:
             shutdown_time = shutdown_data[placer]
