@@ -6,8 +6,9 @@ it will be used to store the shutdown time, which will be stored in unix time fo
 This means the script requires writes permissions.
 
 How to use:
-Python 3.5 is required to run this script, download at install it from https://www.python.org/ if you haven't already 
+Python 3.5 is required to run this script, download at install it from https://www.python.org/ if you haven't already.
 Now simply execute the .bat file. If you wish to relocate this .bat file, you can right-click and create a shortcut, and then move that.
+
 Available commands will be displayed once you launch the script, but basic use it to write the desired time in hours:minutes and then hit enter.
 I.E. If you want your computer to shut down after one hour and thirty minutes you'd write 1:30 and then hit enter.
 
