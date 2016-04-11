@@ -5,7 +5,7 @@ The script is based upon the OS module and the windows CLI shutdown command. The
 it will be used to store the shutdown time, which will be stored in unix time format, this is used to calculate the remaining time till shutdown.
 This means the script requires writes permissions.
 
-How to use:
+######How to use:
 Python 3.5 is required to run this script, download at install it from https://www.python.org/ if you haven't already.
 Now simply execute the .bat file. If you wish to relocate this .bat file, you can right-click and create a shortcut, and then move that.
 
