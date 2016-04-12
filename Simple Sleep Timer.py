@@ -91,8 +91,8 @@ class Timer:
         return time_remaining, shutdown_time_human
 
 #---------------------------------Main------------------------------------------
-
-print('Simple Sleep Timer (SST)\n\nAvailable commands:\nhours:minutes         - Shuts down the computer after the given time\nr, reboot or restart  - Enters reboot mode\nl, left or est        - Prints remaining time till shutdown\nc, cancel or abort    - Cancels previously scheduled action\ne, end or exit        - Exits the program')
+welcome_message = 'Simple Sleep Timer (SST)\n\nAvailable commands:\nhours:minutes         - Shuts down the computer after the given time\nr, reboot or restart  - Enters reboot mode\nl, left or est        - Prints remaining time till shutdown\nc, cancel or abort    - Cancels previously scheduled action\ne, end or exit        - Exits the program'
+print(welcome_message)
 while 1 == 1:
     sleep_time = input('\nMenu: ')
 
@@ -102,16 +102,23 @@ while 1 == 1:
 
 #Reboot mode
     elif sleep_time.lower() == "r" or sleep_time.lower() == "reboot" or sleep_time.lower() == "restart":  #Checks for the words r, reboot, or restart
-        print('\nEntering reboot mode')
-        print('Reboot commands:')
+        os.system('cls')
+        print('Reboot mode')
+        print('\nReboot commands:')
         print('hours:minutes    - Restarts the computer af the given time')
         print('Anything else    - Return to main menu')
         reboot_time = input('\nReboot mode: ')
         if Timer.is_time(reboot_time) == True or Timer.is_number(reboot_time) == True:
             Timer.shutdown(reboot_time, "-r")
             print('\nReturning to menu')
+            time.sleep(1)
+            os.system('cls')
+            print(welcome_message)
         else:
             print('\nReturning to menu')
+            time.sleep(.5)
+            os.system('cls')
+            print(welcome_message)
 
 #Time remaining mode
     elif sleep_time.lower() == "l" or sleep_time.lower() == "left" or sleep_time.lower() == "est":
