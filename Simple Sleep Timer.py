@@ -24,26 +24,21 @@ class Timer:
 #Converts input in time format to seconds
     def convert_time(t):
         h, sep, m = str(t).partition(':')   #Seperates input as 2 variables and removes : (h, hours and m, minuts)
-        h = abs(float(h))
-        m = abs(float(m))
-        s = (h*3600)+(m*60)
+        s = abs(float(h))*3600+abs(float(m))*60
         s, sep, tail = str(s).partition('.')
         return s
 
 #Converts number format to seconds
     def convert_number(t):
-        t = abs(float(t))
-        t = t*3600
+        t = abs(float(t))*3600
         t, sep, tail = str(t).partition('.')
         return t
 
 #Writes shutdown time to file
     def write_time(t):
-        timestamp = int(time.time())
-        timestamp = timestamp + int(t)
+        timestamp = int(time.time()) + int(t)
         f = open('data-shutdown.txt', 'w')
-        f.write(str(timestamp))
-        f.write('\n')
+        f.write(str(timestamp) + '\n')
         f.close
 
 #Removes shutdown time from file
