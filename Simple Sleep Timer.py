@@ -51,31 +51,31 @@ class Timer:
 #Shutdown function, converts time and sends shutdown signal, takes 2 variables t (time in seconds) and m (mode)
     def shutdown(t, m):
         time_remaining, shutdown_time = Timer.time_remaining()
-        if time_remaining < 0:
+        if time_remaining <= 0:
             try:
                 if Timer.is_time(t) == True:
                     s = Timer.convert_time(t)
                 elif Timer.is_number(t) == True:
                     s = Timer.convert_number(t)
             except ValueError:
-                print("Incorrect input. Use hours:minutes. Returning to main menu")
+                print('Incorrect input. Use hours:minutes. Returning to main menu')
                 return
             try:
                 Timer.write_time(s)
-                os.system("shutdown " + m + " -t " + str(s))
+                os.system('shutdown ' + m + ' -t ' + str(s))
                 time_remaining, shutdown_time = Timer.time_remaining()
                 print(shutdown_time)
             except UnboundLocalError:
-                print("Incorrect input. Use hours:minutes. Returning to main menu")
+                print('Incorrect input. Use hours:minutes. Returning to main menu')
         else:
-            print("Sutdown already scheduled, please cancel it before trying to schedule another one.")
+            print('Action already scheduled, please cancel it before trying to schedule another one.')
 
 #Returns remaining time till shutdown
     def time_remaining():
         try:
             shutdown_data = open('data-shutdown.txt').readlines()
         except FileNotFoundError:
-            return 0, "NaN"
+            return 0, 'NaN'
         placer = len(shutdown_data) - 1
         try:
             shutdown_time = shutdown_data[placer]
@@ -97,10 +97,10 @@ while 1 == 1:
 
 #Shutdown mode. If the input is a time format or decimal number, shutdown is assumed as the desired mode
     if Timer.is_time(sleep_time) == True or Timer.is_number(sleep_time) == True:
-        Timer.shutdown(sleep_time, "-s")
+        Timer.shutdown(sleep_time, '-s')
 
 #Reboot mode
-    elif sleep_time.lower() == "r" or sleep_time.lower() == "reboot" or sleep_time.lower() == "restart":  #Checks for the words r, reboot, or restart
+    elif sleep_time.lower() == 'r' or sleep_time.lower() == 'reboot' or sleep_time.lower() == 'restart':  #Checks for the words r, reboot, or restart
         os.system('cls')
         print('Reboot mode')
         print('\nReboot commands:')
@@ -108,7 +108,7 @@ while 1 == 1:
         print('Anything else    - Return to main menu')
         reboot_time = input('\nReboot mode: ')
         if Timer.is_time(reboot_time) == True or Timer.is_number(reboot_time) == True:
-            Timer.shutdown(reboot_time, "-r")
+            Timer.shutdown(reboot_time, '-r')
             print('\nReturning to menu')
             time.sleep(1)
             os.system('cls')
@@ -120,26 +120,26 @@ while 1 == 1:
             print(welcome_message)
 
 #Time remaining mode
-    elif sleep_time.lower() == "l" or sleep_time.lower() == "left" or sleep_time.lower() == "est":
+    elif sleep_time.lower() == 'l' or sleep_time.lower() == 'left' or sleep_time.lower() == 'est':
         remaining, shutdown_time = Timer.time_remaining()
         if remaining > 0:
-            print("Time remaining: " + str(remaining) + " minutes till shutdown")
+            print('Time remaining: ' + str(remaining) + ' minutes till shutdown')
             print(shutdown_time)
         else:
-            print("No shutdown scheduled")
+            print('No shutdown scheduled')
 
 #Cancel shutdown
-    elif sleep_time.lower() == "c" or sleep_time.lower() == "cancel" or sleep_time.lower() == "abort":  #Checks for the words c, cancel, or abort
+    elif sleep_time.lower() == 'c' or sleep_time.lower() == 'cancel' or sleep_time.lower() == 'abort':  #Checks for the words c, cancel, or abort
         remaining_time, shutdown_time = Timer.time_remaining()
         if remaining_time > 0:
             Timer.delete_time()
             os.system('shutdown -a')
             print('Scheduled action aborted')
         else:
-            print("No shutdown Scheduled")
+            print('No shutdown Scheduled')
 
 #Exit program
-    elif sleep_time.lower() == "e" or sleep_time.lower() == "exit" or sleep_time.lower() == 'end':
+    elif sleep_time.lower() == 'e' or sleep_time.lower() == 'exit' or sleep_time.lower() == 'end':
         break
     else:
         print('Incorrect input. Use hours:minutes.')
