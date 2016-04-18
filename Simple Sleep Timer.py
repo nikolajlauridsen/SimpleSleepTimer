@@ -50,21 +50,25 @@ class Timer:
 
 #Shutdown function, converts time and sends shutdown signal, takes 2 variables t (time in seconds) and m (mode)
     def shutdown(t, m):
-        try:
-            if Timer.is_time(t) == True:
-                s = Timer.convert_time(t)
-            elif Timer.is_number(t) == True:
-                s = Timer.convert_number(t)
-        except ValueError:
-            print("Incorrect input. Use hours:minutes. Returning to main menu")
-            return
-        try:
-            Timer.write_time(s)
-            os.system("shutdown " + m + " -t " + str(s))
-            time_remaining, shutdown_time = Timer.time_remaining()
-            print(shutdown_time)
-        except UnboundLocalError:
-            print("Incorrect input. Use hours:minutes. Returning to main menu")
+        time_remaining, shutdown_time = Timer.time_remaining()
+        if time_remaining < 0:
+            try:
+                if Timer.is_time(t) == True:
+                    s = Timer.convert_time(t)
+                elif Timer.is_number(t) == True:
+                    s = Timer.convert_number(t)
+            except ValueError:
+                print("Incorrect input. Use hours:minutes. Returning to main menu")
+                return
+            try:
+                Timer.write_time(s)
+                os.system("shutdown " + m + " -t " + str(s))
+                time_remaining, shutdown_time = Timer.time_remaining()
+                print(shutdown_time)
+            except UnboundLocalError:
+                print("Incorrect input. Use hours:minutes. Returning to main menu")
+        else:
+            print("Sutdown already scheduled, please cancel it before trying to schedule another one.")
 
 #Returns remaining time till shutdown
     def time_remaining():
