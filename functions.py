@@ -58,14 +58,12 @@ def time_remaining():
         shutdown_data = open('data-shutdown.txt').readlines()
     except FileNotFoundError:
         return 0, 'NaN'
-    placer = len(shutdown_data) - 1
     try:
-        scheduled_action_time = shutdown_data[placer]
+        scheduled_action_time = shutdown_data[:-1]
     except IndexError:
         scheduled_action_time = 0
     current_time = int(time.time())
-    time_remaining = int(scheduled_action_time) - current_time
-    time_remaining = float(time_remaining) / 60
+    time_remaining = float(int(scheduled_action_time) - current_time) /60
     shutdown_time_human = datetime.datetime.fromtimestamp(
         int(scheduled_action_time)
     ).strftime('Shutting down at %H:%M:%S on %d-%m-%y')
