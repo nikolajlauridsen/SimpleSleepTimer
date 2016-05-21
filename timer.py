@@ -10,8 +10,7 @@ class Timer():
         self.error_message = 'Incorrect input. Use hours:minutes. Returning to main menu'
 
     def start(self, duration, mode):
-        time_remaining, shutdown_time = tf.time_remaining()
-        if time_remaining <= 0:
+        if not tf.timer_running():
             try:
                 if tf.is_time(duration):
                     duration = tf.convert_time(duration)

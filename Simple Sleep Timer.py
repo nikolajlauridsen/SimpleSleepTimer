@@ -19,9 +19,8 @@ while True:
 
     # Reboot Mode
     elif user_input.lower() == 'r' or user_input.lower() == 'reboot' or user_input.lower() == 'restart':
-        reboot_menu = timer_settings.reboot_menu
         os.system('cls')
-        print(reboot_menu)
+        print(timer_settings.reboot_menu)
         user_input = input('\nReboot mode: ')
         if tf.is_time(user_input) or tf.is_time(user_input):
             timer.start(user_input, '-r')
@@ -40,13 +39,13 @@ while True:
 
     # Cancel shutdown.
     elif user_input.lower() == 'c' or user_input.lower() == 'cancel' or user_input.lower() == 'abort':
-        remaining_time, shutdown_time = tf.time_remaining()
-        if remaining_time > 0:
+        if tf.timer_running():
             tf.delete_time()
             os.system('shutdown -a')
             print('Scheduled action aborted')
         else:
             print('No shutdown scheduled')
+
     # Exit program
     elif user_input.lower() == 'e' or user_input.lower() == 'exit' or user_input.lower() == 'end':
         break

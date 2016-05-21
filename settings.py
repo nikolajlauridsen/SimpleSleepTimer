@@ -2,7 +2,7 @@ class Settings():
     """A class for storing the settings for SST."""
 
     def __init__(self):
-        """Initialize the game's settings."""
+        """Initialize the program's settings."""
         self.welcome_message = 'Simple Sleep Timer (SST)\n\nAvailable commands:' \
                                '\nhours:minutes         - Shuts down the computer after the given time' \
                                '\nr, reboot or restart  - Enters reboot mode' \

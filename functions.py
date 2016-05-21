@@ -1,6 +1,7 @@
 import datetime
 import time
 import os
+
 from settings import Settings
 settings = Settings()
 
@@ -63,11 +64,11 @@ def time_remaining():
     except IndexError:
         scheduled_action_time = 0
     current_time = int(time.time())
-    time_remaining = float(int(scheduled_action_time) - current_time)/60
+    remaining_duration = float(int(scheduled_action_time) - current_time)/60
     shutdown_time_human = datetime.datetime.fromtimestamp(
         int(scheduled_action_time)
     ).strftime('Shutting down at %H:%M:%S on %d-%m-%y')
-    return time_remaining, shutdown_time_human
+    return remaining_duration, shutdown_time_human
 
 
 # Menu return
@@ -76,3 +77,12 @@ def menu_return(delay):
     time.sleep(delay)
     os.system('cls')
     print(settings.welcome_message)
+
+
+# Returns true if the timer is running
+def timer_running():
+    remaining_time, shutdown_time = time_remaining()
+    if remaining_time > 0:
+        return True
+    else:
+        return False
