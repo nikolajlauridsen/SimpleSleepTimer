@@ -22,8 +22,7 @@ class Timer():
             try:
                 tf.write_time(duration)
                 os.system('shutdown ' + mode + ' -t ' + str(duration))
-                time_remaining, shutdown_time = tf.time_remaining()
-                print(shutdown_time)
+                tf.print_remaining()
             except UnboundLocalError:
                 print(self.error_message)
         else:

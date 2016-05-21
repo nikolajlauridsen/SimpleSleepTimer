@@ -30,21 +30,11 @@ while True:
 
     # Print remaining time
     elif user_input.lower() == 'l' or user_input.lower() == 'left' or user_input.lower() == 'est':
-        remaining_time, shutdown_time = tf.time_remaining()
-        if remaining_time > 0:
-            print('Time remaining: ' + str(remaining_time) + ' minutes till shutdown')
-            print(shutdown_time)
-        else:
-            print('No shutdown Scheduled')
+        tf.print_remaining()
 
     # Cancel shutdown.
     elif user_input.lower() == 'c' or user_input.lower() == 'cancel' or user_input.lower() == 'abort':
-        if tf.timer_running():
-            tf.delete_time()
-            os.system('shutdown -a')
-            print('Scheduled action aborted')
-        else:
-            print('No shutdown scheduled')
+        tf.cancel_shutdown()
 
     # Exit program
     elif user_input.lower() == 'e' or user_input.lower() == 'exit' or user_input.lower() == 'end':

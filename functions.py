@@ -71,9 +71,19 @@ def time_remaining():
     return remaining_duration, shutdown_time_human
 
 
+# Print remaining duration
+def print_remaining():
+    remaining_time, shutdown_time = time_remaining()
+    if remaining_time >= 0:
+        print(str(int(remaining_time)) + ' minutes till shutdown')
+        print(shutdown_time)
+    else:
+        print('No shutdown Scheduled')
+
+
 # Menu return
 def menu_return(delay):
-    print('\nReturning to menu')
+    print('\nReturning to menu.')
     time.sleep(delay)
     os.system('cls')
     print(settings.welcome_message)
@@ -86,3 +96,13 @@ def timer_running():
         return True
     else:
         return False
+
+
+# Cancels scheduled shutdown if one is running
+def cancel_shutdown():
+    if timer_running():
+        delete_time()
+        os.system('shutdown -a')
+        print('Scheduled action aborted.')
+    else:
+        print('No shutdown scheduled.')
