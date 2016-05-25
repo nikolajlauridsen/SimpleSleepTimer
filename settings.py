@@ -13,3 +13,27 @@ class Settings():
         self.reboot_menu = 'Reboot mode\n\nReboot commands:' \
                            '\nhours:minutes    - Restarts the computer af the given time' \
                            '\nAnything else    - Return to main menu'
+
+        self.reboot_commands = {
+            'r',
+            'reboot',
+            'restart'
+        }
+
+        self.r_time_commands = {
+            'l',
+            'left',
+            'est'
+        }
+
+        self.cancel_commands = {
+            'c',
+            'cancel',
+            'abort'
+        }
+
+        self.exit_commands = {
+            'e',
+            'exit',
+            'end'
+        }

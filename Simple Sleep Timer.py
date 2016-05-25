@@ -18,26 +18,26 @@ while True:
         timer.start(user_input, '-s')
 
     # Reboot Mode
-    elif user_input.lower() == 'r' or user_input.lower() == 'reboot' or user_input.lower() == 'restart':
+    elif user_input.lower() in timer_settings.reboot_commands:
         os.system('cls')
         print(timer_settings.reboot_menu)
         user_input = input('\nReboot mode: ')
         if tf.is_time(user_input) or tf.is_time(user_input):
             timer.start(user_input, '-r')
-            tf.menu_return(1)
+            tf.menu_return(2)
         else:
             tf.menu_return(0.5)
 
     # Print remaining time
-    elif user_input.lower() == 'l' or user_input.lower() == 'left' or user_input.lower() == 'est':
+    elif user_input.lower() in timer_settings.r_time_commands:
         tf.print_remaining()
 
     # Cancel shutdown.
-    elif user_input.lower() == 'c' or user_input.lower() == 'cancel' or user_input.lower() == 'abort':
+    elif user_input.lower() in timer_settings.cancel_commands:
         tf.cancel_shutdown()
 
     # Exit program
-    elif user_input.lower() == 'e' or user_input.lower() == 'exit' or user_input.lower() == 'end':
+    elif user_input.lower() in timer_settings.exit_commands:
         break
 
     else:
