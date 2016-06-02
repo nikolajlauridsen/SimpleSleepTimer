@@ -23,13 +23,16 @@ class Settings():
         self.r_time_commands = {
             'l',
             'left',
-            'est'
+            'est',
+            'time left'
         }
 
         self.cancel_commands = {
             'c',
             'cancel',
-            'abort'
+            'abort',
+            'stop',
+            'stop shutdown'
         }
 
         self.exit_commands = {
