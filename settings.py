@@ -14,29 +14,29 @@ class Settings():
                            '\nhours:minutes    - Restarts the computer af the given time' \
                            '\nAnything else    - Return to main menu'
 
-        self.reboot_commands = {
+        self.reboot_commands = [
             'r',
             'reboot',
             'restart'
-        }
+        ]
 
-        self.r_time_commands = {
+        self.r_time_commands = ]
             'l',
             'left',
             'est',
             'time left'
-        }
+        ]
 
-        self.cancel_commands = {
+        self.cancel_commands = [
             'c',
             'cancel',
             'abort',
             'stop',
             'stop shutdown'
-        }
+         ]
 
-        self.exit_commands = {
+        self.exit_commands = [
             'e',
             'exit',
             'end'
-        }
+        ]
