@@ -63,8 +63,8 @@ def time_remaining():
         scheduled_action_time = shutdown_data[-1]
     except IndexError:
         scheduled_action_time = 0
-    current_time = int(time.time())
-    remaining_duration = float(int(scheduled_action_time) - current_time)/60
+
+    remaining_duration = float(int(scheduled_action_time) - int(time.time()))/60
     shutdown_time_human = datetime.datetime.fromtimestamp(
         int(scheduled_action_time)
     ).strftime('Shutting down at %H:%M:%S on %d-%m-%y')

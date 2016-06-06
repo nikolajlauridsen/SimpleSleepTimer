@@ -20,7 +20,7 @@ class Settings():
             'restart'
         ]
 
-        self.r_time_commands = ]
+        self.r_time_commands = [
             'l',
             'left',
             'est',
