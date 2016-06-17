@@ -26,7 +26,8 @@ def is_number(u_input):
 
 # Converts input in time format to seconds
 def convert_time(u_input):
-    h, sep, m = str(u_input).partition(':')   # Seperates input as 2 variables and removes : (h, hours and m, minuts)
+    # Seperates input as 2 variables and removes : (h, hours and m, minuts)
+    h, sep, m = str(u_input).partition(':')
     s = abs(float(h))*3600+abs(float(m))*60
     s, sep, tail = str(s).partition('.')
     return s
@@ -64,7 +65,9 @@ def time_remaining():
     except IndexError:
         scheduled_action_time = 0
 
-    remaining_duration = float(int(scheduled_action_time) - int(time.time()))/60
+    remaining_duration = float(int(scheduled_action_time) -
+                               int(time.time()))/60
+
     shutdown_time_human = datetime.datetime.fromtimestamp(
         int(scheduled_action_time)
     ).strftime('Shutting down at %H:%M:%S on %d-%m-%y')
