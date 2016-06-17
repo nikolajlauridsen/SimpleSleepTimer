@@ -6,7 +6,7 @@ it will be used to store the shutdown time as a unix time stamp, this is used to
 This means the script requires writes permissions.
 
 #### How to use:
-Python 3.5 is required to run this script, download and install it from https://www.python.org/downloads/ if you haven't already.
+Python 3 is required to run this script, download and install it from https://www.python.org/downloads/ if you haven't already.
 Now simply execute the .bat file. If you wish to relocate this .bat file, you can right-click and create a shortcut, and then move that.
 
 Available commands will be displayed once you launch the script, but basic use of it is to write the desired time in hours:minutes and then hit enter.
