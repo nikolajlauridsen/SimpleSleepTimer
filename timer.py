@@ -7,8 +7,8 @@ class Timer():
     """checks input and send the shutdown signal"""
 
     def __init__(self):
-        self.error_message = 'Incorrect input. Use hours:minutes.'+
-        ' Returning to main menu'
+        self.error_message = 'Incorrect input. Use hours:minutes.' \
+                             ' Returning to main menu'
 
     def start(self, duration, mode):
         if not tf.timer_running():
