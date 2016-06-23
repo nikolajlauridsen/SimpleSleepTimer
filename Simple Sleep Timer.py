@@ -22,7 +22,7 @@ while True:
         os.system('cls')
         print(timer_settings.reboot_menu)
         user_input = input('\nReboot mode: ')
-        if tf.is_time(user_input) or tf.is_time(user_input):
+        if tf.is_number(user_input) or tf.is_time(user_input):
             timer.start(user_input, '-r')
             tf.menu_return(2)
         else:
