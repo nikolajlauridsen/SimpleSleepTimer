@@ -25,7 +25,8 @@ class Settings():
             'l',
             'left',
             'est',
-            'time left'
+            'time left',
+            'remaining'
         ]
 
         self.cancel_commands = [
