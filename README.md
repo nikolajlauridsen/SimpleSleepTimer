@@ -1,5 +1,6 @@
 # SimpleSleepTimer (SST)
 A simple python script and associated bat file which simplifies setting your windows computer to turn off after a given time.
+[![Build Status](https://travis-ci.org/nikolajlauridsen/SimpleSleepTimer.svg?branch=master)](https://travis-ci.org/nikolajlauridsen/SimpleSleepTimer)
 
 The script is based upon the OS module and the windows CLI shutdown command. The first time the script is executed a .txt file will be created,
 it will be used to store the shutdown time as a unix time stamp, this is used to calculate the remaining time till shutdown.
