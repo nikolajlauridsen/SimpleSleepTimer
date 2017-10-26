@@ -28,4 +28,4 @@ class Timer():
                 print(self.error_message)
         else:
             print('Action already scheduled, please cancel it before' +
-                  'trying to schedule another one.')
+                  ' trying to schedule another one.')

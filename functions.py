@@ -57,21 +57,20 @@ def delete_time():
 # Returns remaining time till shutdown
 def time_remaining():
     try:
-        shutdown_data = open('data-shutdown.txt').readlines()
+        with open('data-shutdown.txt') as txt_file:
+            shutdown_data = txt_file.readlines()
     except FileNotFoundError:
         return 0, 'NaN'
     try:
         scheduled_action_time = shutdown_data[-1]
     except IndexError:
-        scheduled_action_time = 0
+        scheduled_action_time = time.time()
 
     remaining_duration = float(int(scheduled_action_time) -
                                int(time.time()))/60
 
-    shutdown_time_human = datetime.datetime.fromtimestamp(
-        int(scheduled_action_time)
-    ).strftime('Shutting down at %H:%M:%S on %d-%m-%y')
-    return remaining_duration, shutdown_time_human
+    shutdown_time = datetime.datetime.fromtimestamp(int(scheduled_action_time)).strftime('Shutting down at %H:%M:%S')
+    return remaining_duration, str(shutdown_time)
 
 
 # Print remaining duration
